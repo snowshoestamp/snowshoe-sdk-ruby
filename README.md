@@ -4,7 +4,8 @@ Snowshoe API Ruby Client
 The Snowshoe ruby client submits point data to the Snowshoe API for authentication. The client will return a JSON parsed hash, containing either  the serial of the matched stamp (a success!) or an error.
 
 ## Dependencies
-- oauth
+- uri
+- net/http
 
 ## Installation
 ```ruby
@@ -14,18 +15,17 @@ gem install snowshoe
 
 ## Usage: Setting up the client and making a POST
 
-On instantiation of the Snowshoe client, pass in your SNOWSHOE_APP_KEY & SNOWSHOE_APP_SECRET, respectively.
+On instantiation of the Snowshoe client, pass in your SNOWSHOE_API_KEY.
 
-Currently, all posts are made to v2 of the API at http://beta.snowshoestamp.com/api/v2/stamp.
+Currently, all posts are made to v3 of the API at https://api.snowshoestamp.com/v3/stamp.
 
 The data hash is constructed from the point data sent by your front-end stamp screen.
 
 The client will return a JSON parsed hash, containing either the serial of the matched stamp (a success!) or an error.
 
 ```ruby
-client = Snowshoe::Client.new(SNOWSHOE_APP_KEY, SNOWSHOE_APP_SECRET)
-data = { "data" => params["data"] }
-response = client.post(data)
+client = Snowshoe::Client.new(SNOWSHOE_API_KEY)
+response = client.post(request.body.read)
 
 if response.include? "stamp"
   # Serve success asset...
