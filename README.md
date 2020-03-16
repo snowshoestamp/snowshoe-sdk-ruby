@@ -9,7 +9,7 @@ The Snowshoe ruby client submits point data to the Snowshoe API for authenticati
 
 ## Installation
 ```ruby
-gem install snowshoe
+gem install snowshoe_stamp_sdk
 ```
 
 
